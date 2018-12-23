@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
     errMessage = err.errors[keys[0]].message
   } else {
     // generic or custom error
-    errCode = err.status || 500
+    errCode = err.status || 500// internal server error
     errMessage = err.message || 'Internal Server Error'
   }
   res.status(errCode).type('txt')
