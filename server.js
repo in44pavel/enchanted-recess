@@ -21,11 +21,15 @@ app.use(bodyParser.json())
 
 //attaching html
 app.get('/', (req, res) => {
-  res.sendFile(/*__dirname*/process.cwd() + '/views/index.html')//__dirname==process.cwd()==/app
+  res.sendFile(__dirname/*process.cwd()*/ + '/views/index.html')//__dirname==process.cwd()==/app
   });
 //attaching css in /public folder
 app.use(express.static('public'))//option #1- requires just style.css in html
 //app.use('/public', express.static(process.cwd() + '/public'));//option#2- requires stating path to .css in html
+
+//attaching router(provide requiring().Router and exporting of module in myRouter)
+const apirouter= require('./myRouter');
+app.use('/api/exercise', apirouter)
 
 // Not found middleware
 app.use((req, res, next) => {
